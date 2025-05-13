@@ -1,0 +1,53 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Color Trading Practice</title>
+  <style>
+    body { font-family: Arial, sans-serif; text-align: center; background-color: #f2f2f2; padding: 20px; }
+    .btn { padding: 10px 20px; margin: 10px; font-size: 18px; cursor: pointer; border: none; border-radius: 5px; }
+    .green { background-color: #4CAF50; color: white; }
+    .red { background-color: #f44336; color: white; }
+    .violet { background-color: #9c27b0; color: white; }
+    .big, .small { background-color: #2196f3; color: white; }
+    #result { font-size: 24px; margin-top: 20px; }
+    #balance { font-size: 20px; margin: 20px; }
+    table { margin: 20px auto; border-collapse: collapse; }
+    th, td { padding: 8px 12px; border: 1px solid #ccc; }
+  </style>
+</head>
+<body>
+  <h1>Color Trading Practice</h1>
+  <div id="balance">Balance: ₹<span id="wallet">10000</span></div>
+  <div>
+    <button class="btn green" onclick="trade('green')">Green</button>
+    <button class="btn red" onclick="trade('red')">Red</button>
+    <button class="btn violet" onclick="trade('violet')">Violet</button>
+  </div>
+  <div>
+    <button class="btn big" onclick="trade('big')">Big</button>
+    <button class="btn small" onclick="trade('small')">Small</button>
+  </div>
+  <div id="result">Make your prediction!</div>
+
+  <script>
+    let balance = 10000;
+    function trade(choice) {
+      const outcomes = ['green', 'red', 'violet', 'big', 'small'];
+      const randomChoice = outcomes[Math.floor(Math.random() * outcomes.length)];
+      let resultText = '';
+      if (choice === randomChoice) {
+        balance += 100;
+        resultText = `You chose ${choice}, and the result was ${randomChoice}. You win ₹100!`;
+      } else {
+        balance -= 100;
+        resultText = `You chose ${choice}, but the result was ${randomChoice}. You lose ₹100.`;
+      }
+      document.getElementById('wallet').textContent = balance;
+      document.getElementById('result').textContent = resultText;
+    }
+  </script>
+</body>
+</html>
